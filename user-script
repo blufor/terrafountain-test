@@ -1,0 +1,7 @@
+#!/bin/bash
+
+apt update
+apt -y install docker.io
+
+docker run --name es     -d --network host -e "discovery.type=single-node" elasticsearch:7.8.1
+docker run --name kibana -d --network host -e "ELASTICSEARCH_HOSTS=http://localhost:9200" kibana:7.8.1
